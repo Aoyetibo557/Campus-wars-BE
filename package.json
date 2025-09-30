@@ -10,8 +10,14 @@
     "watch": "nodemon",
     "prebuild": "supabase gen types typescript --project-id dzdwpnmzstktddkxedlw --schema public > types/supabase.ts",
     "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json"
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "nodemonConfig": {
     "watch": [
       "src/**/*"
