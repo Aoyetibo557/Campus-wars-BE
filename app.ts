@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import multer from "multer";
+import { Request, Response } from "express";
 
 // import routes
 import health_routes from "./routes/health_routes";
@@ -13,6 +14,12 @@ import trivia_routes from "./routes/trivia.routes";
 import auth_routes from "./routes/auth.routes";
 
 const app = express();
+
+app.get("/", (_req: Request, res: Response) => {
+  return res.send(
+    "Welcome to my Express Typescript hosted on Vercel for Campus Wars"
+  );
+});
 
 app.use(morgan("combined"));
 app.use(bodyParser.urlencoded({ extended: true }));
