@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "rootDir": "/",
+    "outDir": "dist",
 
     // Environment Settings
     "module": "nodenext",
@@ -29,6 +29,15 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["*.ts"],
+  "include": [
+    "api/**/*.ts",
+    "routes/**/*.ts",
+    "controllers/**/*.ts",
+    "services/**/*.ts",
+    "middleware/**/*.ts",
+    "utils/**/*.ts",
+    "config/**/*.ts",
+    "types/**/*.ts"
+  ],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }

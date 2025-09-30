@@ -14,12 +14,12 @@ import auth_routes from "./routes/auth.routes";
 
 const app = express();
 
-app.use(morgan("combined")); //to log in the console as i develeop the requests that comes in
+app.use(morgan("combined"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(cors());
 app.use(express.json());
+
 app.use("/api/auth", auth_routes);
 app.use("/api", health_routes);
 app.use("/api/users", user_routes);
@@ -27,7 +27,7 @@ app.use("/api/university", university_routes);
 app.use("/api/games", game_routes);
 app.use("/api/trivia", trivia_routes);
 
-// Error handling middleware for multer
+// Multer error handling
 app.use(
   (
     error: any,
