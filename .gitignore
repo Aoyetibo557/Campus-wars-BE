@@ -12,3 +12,6 @@ tables.sql
 
 # vercel
 .vercel
+
+# database file
+./database.types.ts
