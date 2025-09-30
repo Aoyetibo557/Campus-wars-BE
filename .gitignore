@@ -1,0 +1,14 @@
+# Enviroment Variables
+.env
+
+# Setting folder
+.vscode
+
+tables.sql
+
+# dependencies
+/node_modules
+
+
+# vercel
+.vercel
