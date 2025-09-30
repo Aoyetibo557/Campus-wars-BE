@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // File Layout
-    "rootDir": "/",
+    "rootDir": "./api",
     "outDir": "dist",
 
     // Environment Settings
@@ -10,7 +10,7 @@
     "types": ["node"],
 
     // Outputs
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": false,
     "declarationMap": false,
 
@@ -30,14 +30,14 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "api/**/*.ts",
-    "routes/**/*.ts",
-    "controllers/**/*.ts",
-    "services/**/*.ts",
-    "middleware/**/*.ts",
-    "utils/**/*.ts",
-    "config/**/*.ts",
-    "types/**/*.ts"
-  ],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+    "./api/**/*.ts",
+    "./routes/**/*.ts",
+    "./controllers/**/*.ts",
+    "./services/**/*.ts",
+    "./middleware/**/*.ts",
+    "./utils/**/*.ts",
+    "./config/**/*.ts",
+    "./types/**/*.ts"
+  ]
+  // "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }
