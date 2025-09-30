@@ -1,6 +1,4 @@
 import { supabase } from "../config/db";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
 // sign up user
 export const signUp = async (email: string, password: string) => {
