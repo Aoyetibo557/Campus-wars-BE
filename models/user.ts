@@ -268,3 +268,7 @@ export const reactivateUser = async (email: string, password: string) => {
 
   return data[0];
 };
+
+export const userStats = async (id: string) => {
+  // get all the user stats
+};

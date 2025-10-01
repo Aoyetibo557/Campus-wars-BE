@@ -110,9 +110,24 @@ export type UniversityPoint = BaseEntity & {
   game?: Game;
 };
 
+export type UserStats = {
+  total_games: number;
+  total_score: number;
+  avg_score: number;
+  best_score: number;
+  battles_won?: number;
+  university_rank: number;
+  current_streak: number;
+  best_streak: number;
+  favourite_game: string;
+  games_by_type: Record<string, number>;
+  recent_sessions: GameSession[];
+};
+
 export type {
   User,
   Profile,
+  UserStats,
   University,
   Game,
   GameSession,

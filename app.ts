@@ -12,6 +12,7 @@ import university_routes from "./routes/university.routes";
 import game_routes from "./routes/game.routes";
 import trivia_routes from "./routes/trivia.routes";
 import auth_routes from "./routes/auth.routes";
+import leaderboard_routes from "./routes/leaderboard.routes";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/api/users", user_routes);
 app.use("/api/university", university_routes);
 app.use("/api/games", game_routes);
 app.use("/api/trivia", trivia_routes);
+app.use("/api/leaderboard", leaderboard_routes);
 
 // Multer error handling
 app.use(
