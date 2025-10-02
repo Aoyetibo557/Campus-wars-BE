@@ -94,5 +94,24 @@ export const validateTriviaGame = async (
       ]);
   }
 
+  //update user points
+  const { data: userPoints, error: fetchUserPointsError } = await supabase
+    .from("profiles")
+    .select("id, total_points")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (fetchUserPointsError) throw new Error(fetchUserPointsError.message);
+
+  if (userPoints) {
+    await supabase
+      .from("profiles")
+      .update({
+        total_points: userPoints.total_points + score,
+        updated_at: new Date(),
+      })
+      .eq("id", userPoints.id);
+  }
+
   return { session, score };
 };

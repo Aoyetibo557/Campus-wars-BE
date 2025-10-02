@@ -1,6 +1,6 @@
 import { IS_DEVELOPMENT, STATUS_CODES } from "../utils/const";
 import { Request, Response } from "express";
-import { validateTriviaGame } from "../services/tiviaValidator";
+import { validateTriviaGame } from "../services/triviaValidator";
 
 export const endTriviaGame = async (req: Request, res: Response) => {
   try {
