@@ -12,6 +12,7 @@ import {
   upload,
   checkUsernameAvailability,
 } from "../controllers/user";
+import { getUserStats } from "../controllers/stats";
 
 const router = Router();
 
@@ -23,6 +24,7 @@ router.get("/:id", authenticateJWT, fetchUserById);
 router.put("/update/:id", authenticateJWT, modifyUser);
 router.delete("/:id", authenticateJWT, removeUser);
 router.post("/username-availability", checkUsernameAvailability);
+router.get("/:userId/stats", getUserStats);
 
 // Avatar routes
 router.post(

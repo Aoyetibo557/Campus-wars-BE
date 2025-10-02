@@ -269,6 +269,13 @@ export const reactivateUser = async (email: string, password: string) => {
   return data[0];
 };
 
-export const userStats = async (id: string) => {
-  // get all the user stats
+export const getUserSessions = async (userId: string) => {
+  const { data, error } = await supabase
+    .from("game_sessions")
+    .select("id, started_at")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+  return data || [];
 };
