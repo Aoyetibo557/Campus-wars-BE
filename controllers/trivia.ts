@@ -4,7 +4,7 @@ import { validateTriviaGame } from "../services/tiviaValidator";
 
 export const endTriviaGame = async (req: Request, res: Response) => {
   try {
-    const { userId, universityId, gameId, answers } = req.body;
+    const { userId, universityId, gameId, createdAt, answers } = req.body;
 
     if (!userId || !universityId || !gameId || !answers) {
       return res
@@ -16,6 +16,7 @@ export const endTriviaGame = async (req: Request, res: Response) => {
       userId,
       universityId,
       gameId,
+      createdAt,
       answers
     );
 

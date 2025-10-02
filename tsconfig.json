@@ -8,6 +8,7 @@
     "module": "nodenext",
     "target": "esnext",
     "types": ["node"],
+    "moduleResolution": "NodeNext",
 
     // Outputs
     "sourceMap": true,

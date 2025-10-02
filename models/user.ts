@@ -272,7 +272,7 @@ export const reactivateUser = async (email: string, password: string) => {
 export const getUserSessions = async (userId: string) => {
   const { data, error } = await supabase
     .from("game_sessions")
-    .select("id, started_at")
+    .select("id, created_at")
     .eq("user_id", userId)
     .order("created_at", { ascending: true });
 

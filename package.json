@@ -46,12 +46,14 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "path": "^0.12.7",
-    "path-type": "^6.0.0"
+    "path-type": "^6.0.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.5.1",
+    "@types/uuid": "^11.0.0",
     "@vercel/node": "^5.3.24",
     "nodemon": "^3.1.10",
     "supabase": "^2.47.2",

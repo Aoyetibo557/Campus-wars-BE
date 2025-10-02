@@ -1,4 +1,3 @@
-// services/triviaValidator.ts
 import { supabase } from "../config/db";
 
 export interface SubmittedAnswer {
@@ -7,6 +6,8 @@ export interface SubmittedAnswer {
   correct_answer: string;
   user_answer: string;
   difficulty: string;
+  is_correct: boolean;
+  selected_answer: string;
   category: string;
 }
 
@@ -14,6 +15,7 @@ export const validateTriviaGame = async (
   userId: string,
   universityId: string,
   gameId: string,
+  createdAt: string,
   answers: SubmittedAnswer[]
 ) => {
   let score = 0;
@@ -34,6 +36,7 @@ export const validateTriviaGame = async (
       score,
       status: "completed",
       ended_at: new Date(),
+      created_at: createdAt,
     })
     .select()
     .single();
@@ -42,12 +45,13 @@ export const validateTriviaGame = async (
 
   // Save each question in session_questions
   const sessionQuestions = answers.map((a, index) => ({
-    session_id: session.id || `trivia-${new Date()}-${index}`,
-    external_id: a.external_id,
+    session_id: session.id,
+    external_id: a.external_id || `trivia-${new Date()}-${index}`,
     question_text: a.question,
     order: index + 1,
     correct_answer: a.correct_answer,
-    // user_answer: a.user_answer,
+    is_correct: a.is_correct,
+    selected_answer: a.user_answer,
   }));
 
   const { error: sqError } = await supabase

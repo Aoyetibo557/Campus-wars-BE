@@ -1,4 +1,4 @@
-export type SessionLike = { started_at?: string | null };
+export type SessionLike = { created_at?: string | null };
 
 /**
  * Calculate streaks from an array of sessions that contain `created_at`.
@@ -14,7 +14,7 @@ export function calculateStreaks(sessions: SessionLike[] | undefined | null): {
   // Normalize sessions into day numbers
   const daySet = new Set<number>();
   for (const s of sessions) {
-    const ts = s?.started_at;
+    const ts = s?.created_at;
     if (!ts) continue;
     const d = new Date(ts);
     if (isNaN(d.getTime())) continue;

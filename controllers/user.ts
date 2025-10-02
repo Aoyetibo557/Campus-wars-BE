@@ -171,18 +171,20 @@ export const modifyUser = async (req: Request, res: Response) => {
     if (!updatedUser) {
       return res
         .status(STATUS_CODES.NOT_FOUND)
-        .json({ message: AUTH_MESSAGES.USER_NOT_FOUND });
+        .json({ message: AUTH_MESSAGES.USER_NOT_FOUND, success: false });
     }
-    return res
-      .status(STATUS_CODES.OK)
-      .json({ message: "User updated successfully", data: updatedUser });
+    return res.status(STATUS_CODES.OK).json({
+      message: "User updated successfully",
+      success: true,
+      data: updatedUser,
+    });
   } catch (error: any) {
     if (IS_DEVELOPMENT) {
       console.error("Error updating user:", error);
     }
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-      .json({ message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR });
+      .json({ message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR, success: false });
   }
 };
 
@@ -195,6 +197,7 @@ export const checkUsernameAvailability = async (
   try {
     if (!username || !username.trim()) {
       return res.status(STATUS_CODES.BAD_REQUEST).json({
+        success: false,
         message: AUTH_MESSAGES.MISSING_USERNAME || "Username is required.",
       });
     }
@@ -203,6 +206,7 @@ export const checkUsernameAvailability = async (
 
     return res.status(STATUS_CODES.OK).json({
       available,
+      success: true,
       message: available
         ? "Username is available."
         : "Username is already taken.",
@@ -214,7 +218,7 @@ export const checkUsernameAvailability = async (
 
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-      .json({ message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR });
+      .json({ message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR, success: false });
   }
 };
 
