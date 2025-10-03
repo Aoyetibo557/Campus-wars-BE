@@ -65,16 +65,19 @@ export const register = async (req: Request, res: Response) => {
 
     if (existingUser) {
       return res
-        .status(STATUS_CODES.BAD_REQUEST)
-        .json({ message: AUTH_MESSAGES.EMAIL_ALREADY_EXISTS });
+        .status(STATUS_CODES.CONFLICT)
+        .json({ message: AUTH_MESSAGES.EMAIL_ALREADY_EXISTS, success: false });
     }
 
     // create new user
     const { user, session } = await createUser(email, password);
 
-    return res
-      .status(STATUS_CODES.CREATED)
-      .json({ message: AUTH_MESSAGES.ACCOUNT_VERIFIED, data: user, session });
+    return res.status(STATUS_CODES.CREATED).json({
+      message: AUTH_MESSAGES.ACCOUNT_VERIFIED,
+      success: true,
+      data: user,
+      session,
+    });
   } catch (error: any) {
     if (IS_DEVELOPMENT) {
       console.error("Error checking existing user:", error);
@@ -94,7 +97,7 @@ export const login = async (req: Request, res: Response) => {
     if (!email.trim() || !password.trim()) {
       return res
         .status(STATUS_CODES.BAD_REQUEST)
-        .json({ message: AUTH_MESSAGES.INVALID_CREDENTIALS });
+        .json({ success: false, message: AUTH_MESSAGES.INVALID_CREDENTIALS });
     }
 
     // create session
@@ -103,9 +106,12 @@ export const login = async (req: Request, res: Response) => {
     //get user profile data
     const profileData = await getUserById(user?.id);
 
-    return res
-      .status(STATUS_CODES.OK)
-      .json({ message: "Login Successful", user: profileData, session });
+    return res.status(STATUS_CODES.OK).json({
+      message: "Login Successful",
+      success: true,
+      user: profileData,
+      session,
+    });
   } catch (error: any) {
     if (IS_DEVELOPMENT) {
       console.error("Error logging in user:", error);
@@ -120,14 +126,16 @@ export const login = async (req: Request, res: Response) => {
 export const fetchAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await getAllUsers();
-    return res.status(STATUS_CODES.OK).json({ data: users });
+    return res
+      .status(STATUS_CODES.OK)
+      .json({ message: "Users fetched!", success: true, data: users });
   } catch (error: any) {
     if (IS_DEVELOPMENT) {
       console.error("Error fetching all users:", error);
     }
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
-      .json({ message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR });
+      .json({ success: false, message: AUTH_MESSAGES.INTERNAL_SERVER_ERROR });
   }
 };
 
